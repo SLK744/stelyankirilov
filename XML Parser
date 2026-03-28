@@ -1,0 +1,63 @@
+import java.io.*;                     // Импорт за работа с файлове
+import java.nio.file.*;               // Импорт за copy/delete/rename
+import java.util.Scanner;             // Импорт за четене от клавиатурата
+
+public class TextEditorCLI {
+
+    static String currentFile = "";           // Име на текущия файл
+    static String content = "";               // Съдържание на файла
+    static boolean isFileOpen = false;        // Проверка дали има отворен файл
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);   // Scanner за вход от клавиатурата
+
+        while (true) {   // Безкраен цикъл за приемане на команди
+
+            System.out.print("> ");   // Prompt символ
+            String command = scanner.nextLine();   // Четем командата
+
+            if (command.startsWith("open ")) {
+                openFile(command.substring(5));
+
+            } else if (command.equals("close")) {
+                closeFile();
+
+            } else if (command.equals("save")) {
+                saveFile();
+
+            } else if (command.startsWith("save as ")) {
+                saveAs(command.substring(8));
+
+            } else if (command.equals("print")) {
+                printContent();
+
+            } else if (command.equals("edit")) {
+                editContent(scanner);
+
+            } else if (command.equals("append")) {
+                appendContent(scanner);
+
+            } else if (command.startsWith("rename ")) {
+                renameFile(command.substring(7));
+
+            } else if (command.equals("delete")) {
+                deleteFile();
+
+            } else if (command.startsWith("copy ")) {
+                copyFile(command.substring(5));
+
+            } else if (command.equals("help")) {
+                showHelp();
+
+            } else if (command.equals("exit")) {
+                System.out.println("Exiting...");
+                break;
+
+            } else {
+                System.out.println("Invalid command!");
+            }
+        }
+
+        scanner.close();   // Затваряме scanner
+    }
