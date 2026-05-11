@@ -1,4 +1,4 @@
-XML Parser - beginner OOP version
+XML Parser 
 
 Стартиране:
 1. Отвори терминал в папка src.
@@ -22,5 +22,4 @@ xpath auto_1 person(address="USA")/name
 save as ../examples/result.xml
 close
 exit
-
 
